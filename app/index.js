@@ -3,6 +3,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var chalk = require('chalk');
 
 var BluemanGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -12,10 +13,18 @@ var BluemanGenerator = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
+      // this.log(this.yeoman);
+
+      this.log("\n" + chalk.blue("HI" + "this is where ascii art goes"));
+
+      this.log(chalk.cyan("\nGenerate a Bluemix app with the Blueman generator!"));
+      this.log(chalk.yellow("First, tell us a little bit about your project »"));
+
+
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Generate a Bluemix app with the Blueman generator!'
-    ));
+    // this.log(yosay(
+    //   'Generate a Bluemix app with the Blueman generator!'
+    // ));
 
   //   var prompts = [{
   //     type: 'confirm',
@@ -42,7 +51,7 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       message: "What is the tagline for your project?"
     }, {
       name: "projectURL",
-      message: "What will the URL for your project be (format: myapp.mybluemix.net)?"
+      message: "What will the URL for your project be " + chalk.magenta("(format: myapp.mybluemix.net)?")
     }];
 
     this.prompt(prompts, function (props) {
@@ -51,7 +60,7 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       this.projectTagline     = props.projectTagline;
       this.projectURL         = props.projectURL;
 
-      cb();
+      done();
     }.bind(this));
   },
 

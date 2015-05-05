@@ -28,6 +28,7 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "chalk": "^0.5.1",
     "mocha": "*"
   },
   "peerDependencies": {
