@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "chalk": "^0.5.1",
+    "gulp-express": "^0.3.5",
     "mocha": "*"
   },
   "peerDependencies": {

@@ -59,40 +59,43 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       // folders being made
       this.dest.mkdir('public');
       this.dest.mkdir('public/css');
+      this.dest.mkdir('public/img');
+      this.dest.mkdir('public/js');
 
       // files being templated
-      this.template('_index.html', 'index.html');
+      this.template('public/index.html', 'public/index.html'); //why aren't we putting this in public/index.html?
       this.template('_manifest.yml', 'manifest.yml');
 
       //files being copied over
       this.copy('_package.json', 'package.json');
       this.copy('_bower.json', 'bower.json');
       this.copy('app.js', 'app.js');
-      this.copy('.cfignore', '.cfignore');
       this.copy('public/css/main.css', 'public/css/main.css');
     },
 
     projectfiles: function () {
-      this.src.copy('editorconfig', '.editorconfig');
-      this.src.copy('jshintrc', '.jshintrc');
+      this.copy('editorconfig', '.editorconfig');
+      this.copy('jshintrc', '.jshintrc');
+      this.copy('.cfignore', '.cfignore');
+      this.copy('gulpfile.js', 'gulpfile.js');
     }
   },
 
   end: function () {
-    //this.installDependencies();
-    // http://nodejs.org/api.html#_child_processes
-    var sys = require('sys');
-    var exec = require('child_process').exec;
-    var child;
+    this.installDependencies();
+    // // http://nodejs.org/api.html#_child_processes
+    // var sys = require('sys');
+    // var exec = require('child_process').exec;
+    // var child;
 
-    // executes `cf login`
-    child = exec("cf login", function (error, stdout, stderr) {
-      sys.print('stdout: ' + stdout);
-      sys.print('stderr: ' + stderr);
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
-    });
+    // // executes `cf login`
+    // child = exec("cf login", function (error, stdout, stderr) {
+    //   sys.print('stdout: ' + stdout);
+    //   sys.print('stderr: ' + stderr);
+    //   if (error !== null) {
+    //     console.log('exec error: ' + error);
+    //   }
+    // });
   }
 });
 
