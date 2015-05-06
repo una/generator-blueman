@@ -1,0 +1,8 @@
+applications:
+- name: <%= projectName %>
+  command: npm start
+  path: .
+  domain: <%= projectURL %>.mybluemix.net
+  instances: 1
+  memory: 64M
+  buildpack: sdk-for-nodejs

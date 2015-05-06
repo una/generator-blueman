@@ -41,7 +41,7 @@ var BluemanGenerator = yeoman.generators.Base.extend({
   // },
 
     var prompts = [{
-      name: "devsName",
+      name: "authorName",
       message: "What is your name?"
     }, {
       name: "projectName",
@@ -51,11 +51,11 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       message: "Describe your project for me:"
     }, {
       name: "projectURL",
-      message: "What will the URL for your project be " + chalk.magenta("(format: myapp.mybluemix.net)?")
+      message: "What will the subdomain for your project be? " + chalk.magenta("(do not include mybluemix.net)")
     }];
 
     this.prompt(prompts, function (props) {
-      this.devsName           = props.devsName;
+      this.authorName         = props.authorName;
       this.projectName        = props.projectName;
       this.projectDescription = props.projectDescription;
       this.projectURL         = props.projectURL;
@@ -67,15 +67,18 @@ var BluemanGenerator = yeoman.generators.Base.extend({
   writing: {
 
     app: function () {
+      // folders being made
       this.dest.mkdir('public');
       this.dest.mkdir('public/css');
 
       // files being templated
       this.template('_index.html', 'index.html');
+      this.template('_manifest.yml', 'manifest.yml');
 
       //files being copied over
       this.copy('_package.json', 'package.json');
       this.copy('_bower.json', 'bower.json');
+      this.copy('public/css/main.css', 'public/css/main.css');
     },
 
     projectfiles: function () {
