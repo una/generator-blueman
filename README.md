@@ -4,9 +4,11 @@
 
 ## Getting Started
 
-### Installing
+### Overview
 
-First of all, Make sure node is installed
+This is a basic [Node.js](https://nodejs.org/) app with [Express.js](http://expressjs.com/) created for a [Bluemix](https://console.ng.bluemix.net/) environment. Make sure you have Node installed as well at the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli).
+
+### Installation
 
 Then install Yeoman (our scaffolding tool):
 ```bash
