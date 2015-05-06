@@ -15,10 +15,10 @@ var BluemanGenerator = yeoman.generators.Base.extend({
 
       // this.log(this.yeoman);
 
-      this.log("\n" + chalk.blue("HI" + "this is where ascii art goes"));
+      this.log("\n" + chalk.blue("                                                                                          \n                             .::::::::::-                                                 \n                            -oooooooooooo:                                                \n                           :oooooooooooooo\x2F                                               \n                          \x2Foooooooooooooooo+`                                             \n                         :++++++++++ooooooooo`                                            \n            `oyyyyyyyyoo\x2F:++oooooooo++oooooo+`                                            \n           `syyyyyyysoyy+s+o+++ooooooo\x2F+ooo\x2F   .+++++.\x2F+++++\x2F:  ++++:   :++++             \n          .yyyyyyyysoyyy+yy\x2Fooo++++oooo\x2Foo:    .\x2F+++\x2F.\x2F++++\x2F+++`\x2F++++. .+++++             \n         :yyyyyyyyy+yyyy+yyy+oooooo+++oo\x2F-       oy+   .yy\x2F:\x2Fyo` -yyys.syyy:              \n        .yyyyyyyyyy+yyyy+yyyy:++++++++::.        +s\x2F   .ssssss-  -ss:sss:ss-              \n         -yyyyyyyyy+yyyy+yyy\x2F+ooooo++++o\x2F-       :+:   `++` .++. .+\x2F :+: \x2F+.              \n          .syyyyyyyy+yyy+ys\x2Fooo++++oooo\x2Foo:    -sssss-osssssss+`ssss `o` ssss`..`         \n           `oyyyyyyysoyy+s\x2F++++oooooo+\x2Foooo\x2F   `-----`.------`  ----  `  ----             \n             +yyyyyyyyoo::++ooooooo+\x2F+oooooo+`                                            \n                         :+++++++++ooooooooo+.                                            \n                          \x2Foooooooooooooooo+`                                             \n                           :oooooooooooooo\x2F                                               \n                            -oooooooooooo:                                                \n                             .::::::::::-                                                 \n"));
 
-      this.log(chalk.cyan("\nGenerate a Bluemix app with the Blueman generator!"));
-      this.log(chalk.yellow("First, tell us a little bit about your project »"));
+      this.log(chalk.cyan("\n Generate a Bluemix app with the Blueman generator!"));
+      this.log(chalk.yellow("\n Please tell us a little bit about your project »"));
 
 
     // Have Yeoman greet the user.
@@ -41,23 +41,23 @@ var BluemanGenerator = yeoman.generators.Base.extend({
   // },
 
     var prompts = [{
+      name: "devsName",
+      message: "What is your name?"
+    }, {
       name: "projectName",
       message: "What is the name of your project?"
     }, {
       name: "projectDescription",
       message: "Describe your project for me:"
     }, {
-      name: "projectTagline",
-      message: "What is the tagline for your project?"
-    }, {
       name: "projectURL",
       message: "What will the URL for your project be " + chalk.magenta("(format: myapp.mybluemix.net)?")
     }];
 
     this.prompt(prompts, function (props) {
+      this.devsName           = props.devsName;
       this.projectName        = props.projectName;
       this.projectDescription = props.projectDescription;
-      this.projectTagline     = props.projectTagline;
       this.projectURL         = props.projectURL;
 
       done();
@@ -65,13 +65,17 @@ var BluemanGenerator = yeoman.generators.Base.extend({
   },
 
   writing: {
+
     app: function () {
       this.dest.mkdir('public');
       this.dest.mkdir('public/css');
 
-      this.src.copy('_index.html', 'index.html');
-      this.src.copy('_package.json', 'package.json');
-      // this.src.copy('_bower.json', 'bower.json');
+      // files being templated
+      this.template('_index.html', 'index.html');
+
+      //files being copied over
+      this.copy('_package.json', 'package.json');
+      this.copy('_bower.json', 'bower.json');
     },
 
     projectfiles: function () {
