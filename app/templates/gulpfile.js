@@ -54,8 +54,13 @@ gulp.task('nodemon', function (cb) {
 
 gulp.task('browser-sync', ['nodemon'], function() {
   browserSync.init(null, {
-    proxy: 'http://localhost:5000'
-  });
+    server: {
+        baseDir: 'public/'
+    },
+
+    files: ['public/**/*.*'],
+    port: 5000
+    });
 });
 
 gulp.task('deploy', function () {
