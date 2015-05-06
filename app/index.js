@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var shelljs = require('shelljs');
 var chalk = require('chalk');
+var cli = require('shelljs-cli-fix');
 
 var BluemanGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -82,20 +83,13 @@ var BluemanGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    this.installDependencies();
-    // // http://nodejs.org/api.html#_child_processes
-    // var sys = require('sys');
-    // var exec = require('child_process').exec;
-    // var child;
+    // commented out temporarily to get cf working first:
+    // this.installDependencies();
 
-    // // executes `cf login`
-    // child = exec("cf login", function (error, stdout, stderr) {
-    //   sys.print('stdout: ' + stdout);
-    //   sys.print('stderr: ' + stderr);
-    //   if (error !== null) {
-    //     console.log('exec error: ' + error);
-    //   }
-    // });
+    cli.exec('cf login -a https://api.ng.bluemix.net', function(status, output) {
+      console.log('Exit status:', status);
+      console.log('Program output:', output);
+    });
   }
 });
 
