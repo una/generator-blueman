@@ -1,12 +1,10 @@
 # generator-blueman
 
-> [Yeoman](http://yeoman.io) generator
-
 ## Getting Started
 
 ### Overview
 
-This is a basic [Node.js](https://nodejs.org/) app with [Express.js](http://expressjs.com/) created for a [Bluemix](https://console.ng.bluemix.net/) environment. It uses the [Gulp.js](http://gulpjs.com/) task runner to serve the app with a few optimizations based on [this starter environment](http://github.com/una/gulp-starter-env). 
+> [Yeoman](http://yeoman.io) generator for a basic [Node.js](https://nodejs.org/) app with [Express.js](http://expressjs.com/) created for a [Bluemix](https://console.ng.bluemix.net/) environment. It uses the [Gulp.js](http://gulpjs.com/) task runner to serve the app with a few optimizations based on [this starter environment](http://github.com/una/gulp-starter-env). 
 
 Make sure you have Node installed as well at the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli).
 
