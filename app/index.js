@@ -1,7 +1,9 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var async = require('async');
 var shelljs = require('shelljs');
 var chalk = require('chalk');
+var spawn = require('child_process').spawn;
 
 var BluemanGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -66,7 +68,7 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       // files being templated
       this.template('index.html', 'index.html'); //why aren't we putting this in public/index.html?
       this.template('_manifest.yml', 'manifest.yml');
-      this.template('gulpfile.js', 'gulpfile.js');
+      this.copy('gulpfile.js', 'gulpfile.js');
 
       //files being copied over
       this.copy('_package.json', 'package.json');
@@ -82,21 +84,13 @@ var BluemanGenerator = yeoman.generators.Base.extend({
     }
   },
 
-  end: function () {
-    this.installDependencies();
-    // // http://nodejs.org/api.html#_child_processes
-    // var sys = require('sys');
-    // var exec = require('child_process').exec;
-    // var child;
+  login: function () {
+    spawn('cf', ['login'], {stdio: 'inherit'});
+    this.async();
+  },
 
-    // // executes `cf login`
-    // child = exec("cf login", function (error, stdout, stderr) {
-    //   sys.print('stdout: ' + stdout);
-    //   sys.print('stderr: ' + stderr);
-    //   if (error !== null) {
-    //     console.log('exec error: ' + error);
-    //   }
-    // });
+  end: function () {
+    spawn('npm', ['install'], {stdio: 'inherit'});
   }
 });
 

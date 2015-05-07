@@ -25,7 +25,7 @@ gulp.task('scss', function() {
     notify.onError({
         title:    'Gulp',
         subtitle: 'Failure!',
-
+        message:  "Error: <%= error.message %>",
         sound:    'Beep'
     })(err);
     this.emit('end');
@@ -121,10 +121,11 @@ gulp.task('nodemon', function (cb) {
 gulp.task('build', ['js', 'imgmin', 'minify-html', 'scss'], function () {
 });
 
+// build & deploy
 gulp.task('deploy', function (gulpCallBack) {
   gulp.run('build');
   var spawn = require('child_process').spawn;
-  var cf = spawn('cf', ['push', '<%= projectURL %>', '-c', '"node server.js"'], {stdio: 'inherit'});
+  var cf = spawn('cf', ['push'], {stdio: 'inherit'});
 
   cf.on('exit', function (code) {
     gulpCallBack(code === 0 ? null : 'ERROR: cf process exited with code: ' + code);
