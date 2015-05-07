@@ -21,7 +21,7 @@ To install generator-blueman from npm, run:
 npm install -g generator-blueman
 ```
 
-Finally, initiate the generator:
+Finally, make the directory you want to create your app in, `cd` into it, and initiate the generator:
 
 ```bash
 yo blueman
