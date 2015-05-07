@@ -16,7 +16,6 @@ var gulp        = require('gulp'),
     imagemin    = require('gulp-imagemin'),
     pngquant    = require('imagemin-pngquant'),
     plumber     = require('gulp-plumber'),
-    deploy      = require('gulp-gh-pages'),
     notify      = require('gulp-notify');
 
 gulp.task('scss', function() {
@@ -63,11 +62,6 @@ gulp.task('browser-sync', ['nodemon'], function() {
     });
 });
 
-gulp.task('deploy', function () {
-  return gulp.src('public/**/*')
-      .pipe(deploy());
-});
-
 gulp.task('js', function() {
   gulp.src('js/*.js')
     .pipe(uglify())
@@ -111,5 +105,25 @@ gulp.task('imgmin', function () {
       }))
       .pipe(gulp.dest('public/img'));
 });
+
+gulp.task('nodemon', function (cb) {
+  var called = false;
+  return plugins.nodemon({script: 'server.js'}).on('start', function () {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  });
+});
+
+// gulp.task('deploy', function (gulpCallBack) {
+//   gulp.run('build');
+//   var spawn = require('child_process').spawn;
+//   var cf = spawn('cf', ['push', 'testerPepper', '-c', '"node server.js"'], {stdio: 'inherit'});
+
+//   cf.on('exit', function (code) {
+//     gulpCallBack(code === 0 ? null : 'ERROR: cf process exited with code: ' + code);
+//   });
+// });
 
 gulp.task('default', ['browser-sync', 'js', 'imgmin', 'minify-html', 'scss', 'watch']);

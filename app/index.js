@@ -61,10 +61,12 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       this.dest.mkdir('scss');
       this.dest.mkdir('public/img');
       this.dest.mkdir('public/js');
+      this.dest.mkdir('public/css');
 
       // files being templated
       this.template('index.html', 'index.html'); //why aren't we putting this in public/index.html?
       this.template('_manifest.yml', 'manifest.yml');
+      this.copy('gulpfile.js', 'gulpfile.js');
 
       //files being copied over
       this.copy('_package.json', 'package.json');
@@ -77,7 +79,6 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       this.copy('editorconfig', '.editorconfig');
       this.copy('jshintrc', '.jshintrc');
       this.copy('.cfignore', '.cfignore');
-      this.copy('gulpfile.js', 'gulpfile.js');
     }
   },
 
