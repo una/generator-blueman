@@ -29,8 +29,6 @@
   },
   "devDependencies": {
     "chalk": "^0.5.1",
-    "gulp-express": "^0.3.5",
-    "lodash": "^3.8.0",
     "mocha": "*"
   },
   "peerDependencies": {

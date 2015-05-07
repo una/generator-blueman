@@ -16,14 +16,16 @@ var gulp        = require('gulp'),
     imagemin    = require('gulp-imagemin'),
     pngquant    = require('imagemin-pngquant'),
     plumber     = require('gulp-plumber'),
-    notify      = require('gulp-notify');
+    notify      = require('gulp-notify'),
+    gulpLoadPlugins = require("gulp-load-plugins"),
+    plugins     = gulpLoadPlugins();
 
 gulp.task('scss', function() {
   var onError = function(err) {
     notify.onError({
         title:    'Gulp',
         subtitle: 'Failure!',
-        message:  'Error: <%= error.message %>',
+
         sound:    'Beep'
     })(err);
     this.emit('end');
@@ -58,7 +60,7 @@ gulp.task('browser-sync', ['nodemon'], function() {
     },
 
     files: ['public/**/*.*'],
-    port: 5000
+    port: 3000
     });
 });
 
@@ -108,7 +110,7 @@ gulp.task('imgmin', function () {
 
 gulp.task('nodemon', function (cb) {
   var called = false;
-  return plugins.nodemon({script: 'server.js'}).on('start', function () {
+  return plugins.nodemon({script: 'app.js'}).on('start', function () {
     if (!called) {
       called = true;
       cb();
@@ -116,14 +118,17 @@ gulp.task('nodemon', function (cb) {
   });
 });
 
-// gulp.task('deploy', function (gulpCallBack) {
-//   gulp.run('build');
-//   var spawn = require('child_process').spawn;
-//   var cf = spawn('cf', ['push', 'testerPepper', '-c', '"node server.js"'], {stdio: 'inherit'});
+gulp.task('build', ['js', 'imgmin', 'minify-html', 'scss'], function () {
+});
 
-//   cf.on('exit', function (code) {
-//     gulpCallBack(code === 0 ? null : 'ERROR: cf process exited with code: ' + code);
-//   });
-// });
+gulp.task('deploy', function (gulpCallBack) {
+  gulp.run('build');
+  var spawn = require('child_process').spawn;
+  var cf = spawn('cf', ['push', '<%= projectURL %>', '-c', '"node server.js"'], {stdio: 'inherit'});
+
+  cf.on('exit', function (code) {
+    gulpCallBack(code === 0 ? null : 'ERROR: cf process exited with code: ' + code);
+  });
+});
 
 gulp.task('default', ['browser-sync', 'js', 'imgmin', 'minify-html', 'scss', 'watch']);

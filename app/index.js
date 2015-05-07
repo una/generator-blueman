@@ -66,7 +66,7 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       // files being templated
       this.template('index.html', 'index.html'); //why aren't we putting this in public/index.html?
       this.template('_manifest.yml', 'manifest.yml');
-      this.copy('gulpfile.js', 'gulpfile.js');
+      this.template('gulpfile.js', 'gulpfile.js');
 
       //files being copied over
       this.copy('_package.json', 'package.json');
