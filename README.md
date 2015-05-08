@@ -6,6 +6,8 @@
 
 > [Yeoman](http://yeoman.io) generator for a basic [Node.js](https://nodejs.org/) app with [Express.js](http://expressjs.com/) created for a [Bluemix](https://console.ng.bluemix.net/) environment. It uses the [Gulp.js](http://gulpjs.com/) task runner to serve the app with a few optimizations based on [this starter environment](http://github.com/una/gulp-starter-env). 
 
+To use Bluemix, you'll need to first sign up for an account [here](https://console.ng.bluemix.net/).
+
 Make sure you have Node installed as well at the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli).
 
 ### Installation
@@ -31,11 +33,11 @@ You now have a Bluemix-ready app!
 
 ### Usage
 
-Once the initial files are set up through Yeoman, run `gulp` to start the server. See [the starter environment](http://github.com/una/gulp-starter-env) repo for more documentation on editing files. 
+Once the initial files are set up through Yeoman, run `gulp` to start the server and make edits. See [the starter environment](http://github.com/una/gulp-starter-env) repo for more documentation on editing files. 
 
 ### Deployment
 
-Log in to your Bluemix Account with the Cloud Foundry CLI. Use `cf login` and enter your credentials. When you're ready to deploy the app, type `cf push`
+To deploy the app, use `gulp deploy`
 
 ## License
 

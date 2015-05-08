@@ -3,7 +3,7 @@ var yeoman = require('yeoman-generator');
 var async = require('async');
 var shelljs = require('shelljs');
 var chalk = require('chalk');
-var spawn = require('child_process').spawn;
+var spawnSync = require('child_process').spawnSync;
 
 var BluemanGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -84,13 +84,9 @@ var BluemanGenerator = yeoman.generators.Base.extend({
     }
   },
 
-  login: function () {
-    spawn('cf', ['login'], {stdio: 'inherit'});
-    this.async();
-  },
-
   end: function () {
-    spawn('npm', ['install'], {stdio: 'inherit'});
+    spawnSync('npm', ['install'], {stdio: 'inherit'});
+    spawnSync('cf', ['login'], {stdio: 'inherit'});
   }
 });
 
