@@ -20,7 +20,7 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator, bluemix, express, ibm, cloud-platform, cloud-foundry"
   ],
   "dependencies": {
     "yeoman-generator": "^0.17.0",
