@@ -1,9 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var async = require('async');
 var shelljs = require('shelljs');
 var chalk = require('chalk');
-var spawnSync = require('child_process').spawnSync;
 
 var BluemanGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -85,6 +83,8 @@ var BluemanGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
+    var spawnSync = require('child_process').spawnSync;
+
     spawnSync('npm', ['install'], {stdio: 'inherit'});
     spawnSync('cf', ['login'], {stdio: 'inherit'});
   }
