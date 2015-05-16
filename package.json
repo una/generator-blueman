@@ -1,6 +1,6 @@
 {
   "name": "generator-blueman",
-  "version": "0.1.2",
+  "version": "0.1.25",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",

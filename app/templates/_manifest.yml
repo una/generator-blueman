@@ -4,5 +4,5 @@ applications:
   path: .
   domain: mybluemix.net
   instances: 1
-  memory: 64M
+  memory: <%= projectSize %>
   buildpack: sdk-for-nodejs
