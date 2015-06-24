@@ -1,6 +1,6 @@
 {
   "name": "generator-blueman",
-  "version": "0.1.25",
+  "version": "0.1.3",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -20,7 +20,12 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator, bluemix, express, ibm, cloud-platform, cloud-foundry"
+    "yeoman-generator",
+    "bluemix",
+    "express",
+    "ibm",
+    "cloud-platform",
+    "cloud-foundy"
   ],
   "dependencies": {
     "yeoman-generator": "^0.17.0",
