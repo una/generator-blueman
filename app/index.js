@@ -83,8 +83,8 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       // folders being made
       this.dest.mkdir('public');
       this.dest.mkdir('scss');
-      this.dest.mkdir('img');
-      this.dest.mkdir('js');
+      this.dest.mkdir('public/img');
+      this.dest.mkdir('public/js');
       this.dest.mkdir('public/css');
 
       // files being templated
