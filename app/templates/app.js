@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/public', { extensions: ['html'] }));
 app.use(express.static(__dirname + 'public'));
 
 app.get('/', function(req, res) {
-  res.sendFile('./public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 
