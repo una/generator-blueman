@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var shelljs = require('shelljs');
 var chalk = require('chalk');
+var yosay = require('yosay');
 
 var BluemanGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -87,6 +88,8 @@ var BluemanGenerator = yeoman.generators.Base.extend({
 
     spawnSync('npm', ['install'], {stdio: 'inherit'});
     spawnSync('cf', ['push'], {stdio: 'inherit'});
+    this.log(yosay('Please log in with your Bluemix credentials'));
+    this.log(yosay('All set! head over to ' + chalk.cyan(this.projectURL + '.mybluemix.net') + ' to access your app.'));
   }
 });
 
