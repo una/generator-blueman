@@ -1,14 +1,14 @@
 {
-  "name": "bluemin",
+  "name": "<% projectURL %>",
   "version": "1.0.0",
-  "description": "A test of Una's blueman generator",
+  "description": "<%= projectDescription %>",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "Dan Zaharia",
+  "author": "<%= authorName %>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.12.3"
