@@ -87,8 +87,10 @@ var BluemanGenerator = yeoman.generators.Base.extend({
     var spawnSync = require('child_process').spawnSync;
 
     spawnSync('npm', ['install'], {stdio: 'inherit'});
-    spawnSync('cf', ['push'], {stdio: 'inherit'});
+    spawnSync('cf', ['api', 'api.ng.bluemix.net']);
     this.log(yosay('Please log in with your Bluemix credentials'));
+    spawnSync('cf', ['login'], {stdio: 'inherit'});
+    spawnSync('gulp', ['deploy'], {stdio: 'inherit'});
     this.log(yosay('All set! head over to ' + chalk.cyan(this.projectURL + '.mybluemix.net') + ' to access your app.'));
   }
 });
