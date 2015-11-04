@@ -86,7 +86,7 @@ var BluemanGenerator = yeoman.generators.Base.extend({
     var spawnSync = require('child_process').spawnSync;
 
     spawnSync('npm', ['install'], {stdio: 'inherit'});
-    spawnSync('cf', ['login'], {stdio: 'inherit'});
+    spawnSync('cf', ['push'], {stdio: 'inherit'});
   }
 });
 
