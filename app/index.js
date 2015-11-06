@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var shelljs = require('shelljs');
 var chalk = require('chalk');
+var yosay = require('yosay');
 
 var BluemanGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -42,9 +43,13 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       name: 'projectURL',
       message: 'What will the subdomain for your project be? ' + chalk.magenta('(do not include mybluemix.net)')
     }, {
+      name: 'projectInstances',
+      message: 'How many instances do you want to deploy?' + chalk.magenta('default: 1'),
+      default: '1'
+    }, {
       type: 'list',
-      name: 'projectSize',
-      message: 'How much memory would you like to allocate?',
+      name: 'projectMemory',
+      message: 'How much memory would you like to allocate per instance?' + chalk.magenta('default: 64mb'),
       choices: [
         {
             value: '32M',
@@ -71,7 +76,8 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       this.projectName        = props.projectName;
       this.projectDescription = props.projectDescription;
       this.projectURL         = props.projectURL;
-      this.projectSize        = props.projectSize;
+      this.projectInstances   = props.projectInstances;
+      this.projectMemory      = props.projectMemory;
 
       done();
     }.bind(this));
@@ -110,7 +116,11 @@ var BluemanGenerator = yeoman.generators.Base.extend({
     var spawnSync = require('child_process').spawnSync;
 
     spawnSync('npm', ['install'], {stdio: 'inherit'});
+    spawnSync('cf', ['api', 'api.ng.bluemix.net']);
+    this.log(yosay('Please log in with your Bluemix credentials'));
     spawnSync('cf', ['login'], {stdio: 'inherit'});
+    spawnSync('gulp', ['deploy'], {stdio: 'inherit'});
+    this.log(yosay('All set! head over to ' + chalk.cyan(this.projectURL + '.mybluemix.net') + ' to access your app.'));
   }
 });
 
