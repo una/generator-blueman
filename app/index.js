@@ -42,6 +42,33 @@ var BluemanGenerator = yeoman.generators.Base.extend({
     }, {
       name: 'projectURL',
       message: 'What will the subdomain for your project be? ' + chalk.magenta('(do not include mybluemix.net)')
+    }, {
+      name: 'projectInstances',
+      message: 'How many instances do you want to deploy?' + chalk.magenta('default: 1'),
+      default: '1'
+    }, {
+      type: 'list',
+      name: 'projectMemory',
+      message: 'How much memory would you like to allocate per instance?' + chalk.magenta('default: 64mb'),
+      choices: [
+        {
+            value: '32M',
+            name: '32M'
+        },
+        {
+            value: '64M',
+            name: '64M'
+        },
+        {
+            value: '128M',
+            name: '128M'
+        },
+        {
+            value: '512M',
+            name: '512M'
+        }
+    ],
+      default: '64M'
     }];
 
     this.prompt(prompts, function (props) {
@@ -49,6 +76,8 @@ var BluemanGenerator = yeoman.generators.Base.extend({
       this.projectName        = props.projectName;
       this.projectDescription = props.projectDescription;
       this.projectURL         = props.projectURL;
+      this.projectInstances   = props.projectInstances;
+      this.projectMemory      = props.projectMemory;
 
       done();
     }.bind(this));

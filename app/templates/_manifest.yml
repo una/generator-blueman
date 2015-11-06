@@ -1,3 +1,5 @@
 applications:
 - name: <%= projectURL %>
   command: npm start
+  instances: <%= projectInstances %>
+  memory: <%= projectMemory %>
